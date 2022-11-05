@@ -6,7 +6,7 @@
 $nameErr = $emailErr = "";
 $name = $email = $comment =  "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (empty($_POST["name"])) {
     $nameErr = "Name is required";
   } else {
@@ -33,6 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comment = test_input($_POST["comment"]);
   }
 
+}
+else{
+ $nameErr = "Method not allowed";
 }
 
 function test_input($data) {
