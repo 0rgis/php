@@ -34,9 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 
 }
-else{
- $nameErr = "Method not allowed";
-}
+
 
 function test_input($data) {
   $data = trim($data);
