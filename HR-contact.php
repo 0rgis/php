@@ -2,6 +2,9 @@
 <!-- from w3schools -->
 
 <?php
+//include db connection files may vary
+include 'db.php';
+
 // define variables and set to empty values
 $nameErr = $emailErr = "";
 $name = $email = $comment =  "";
@@ -32,12 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   } else {
     $comment = test_input($_POST["comment"]);
   }
- 
- // Check connection
+
+ // Check database connection  $conn may vary depends on db conection file
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-}
-
+} 
+ 
 // prepare and bind
 $stmt = $conn->prepare("INSERT INTO <table> (name, email, comment) VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $name, $email, $comment);
