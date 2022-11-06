@@ -32,9 +32,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   } else {
     $comment = test_input($_POST["comment"]);
   }
-
+ 
+ // Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
 
+// prepare and bind
+$stmt = $conn->prepare("INSERT INTO <table> (name, email, comment) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $name, $email, $comment);
+
+ //run statement
+$stmt->execute();
+
+// close statement and connection
+$stmt->close();
+$conn->close();  
+}
 
 function test_input($data) {
   $data = trim($data);
